@@ -1,0 +1,58 @@
+
+#include <stdio.h>
+#include <math.h>
+
+int main (){
+    
+    int i, w, tamanho, troca;
+    float vetor_valores[100], soma, soma_var, media, somatorio;
+    
+    printf ("Digite os elementos da série a ser analisada (tamanho máximo de 100 elementos):\n");
+    do {scanf("%d", &tamanho);} 
+        while (tamanho>100);
+/*Aqui, eu utilizei o do while para forçar o usuário a digitar um número entre 0 e 100*/
+    
+    printf("O tamanho selecionado foi: %d \n\n", tamanho);
+    
+/*Inserindo os dados no vetor*/
+    printf ("Digite os elementos da série:\n");
+        for (i=0; i<tamanho; i++) {
+            scanf("%f", &vetor_valores[i]);
+        }
+
+/*Ordenando os valores do vetor*/
+        for (int x=0; x<tamanho; x++){
+            for (int y=x; y<tamanho; y++){
+                if (vetor_valores[x]>vetor_valores[y]){
+                
+                troca = vetor_valores[x];
+                vetor_valores[x] = vetor_valores[y];
+                vetor_valores[y] = troca;
+                
+                }
+            }
+        }
+
+/*O trecho acima eu tirei da internet, mas tive que colocar no papel para poder entender a troca (ordenação)*/
+        
+	for (i=0; i<tamanho; i++) {
+        printf("> %.1f\n", vetor_valores[i]);
+        soma = soma + vetor_valores[i];
+        }
+    printf("Valor mínimo é: %.1f\n", vetor_valores[0]);
+    printf("Valor máximo é: %.1f\n", vetor_valores[tamanho - 1]);
+    printf("Média é: %.1f\n", soma/tamanho);
+    media = soma/tamanho;
+    if (tamanho%2!=0){
+        printf ("A mediana é: %.1f\n", vetor_valores[tamanho/2]);}
+        else {
+            printf ("A mediana é: %.1f\n", vetor_valores[tamanho/2 - 1]);}
+    
+	for (w=0; w<tamanho; w++) {
+        somatorio = somatorio + ((vetor_valores[w] - media)*(vetor_valores[w] - media));
+    }
+    
+	printf ("Desvio padrão é: %.1f\n",sqrt(somatorio/tamanho));
+    
+return 0;
+}
